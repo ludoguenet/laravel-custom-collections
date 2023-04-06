@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Collections\QuestionCollection;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -34,5 +36,25 @@ final class Question extends Model
     public function survey(): BelongsTo
     {
         return $this->belongsTo(Survey::class);
+    }
+
+    /**
+     * @param array $models
+     * @return Collection
+     */
+    public function newCollection(
+        array $models = [],
+    ): Collection {
+        return new QuestionCollection(
+            items: $models,
+        );
+    }
+
+    /**
+     * @return bool
+     */
+    public function isWithoutResponses(): bool
+    {
+        return $this->total_responses === 0;
     }
 }
