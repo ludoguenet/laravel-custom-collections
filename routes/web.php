@@ -1,18 +1,11 @@
 <?php
 
+declare(strict_types=1);
+
+use App\Http\Controllers\Survey\IndexController;
+use App\Http\Controllers\Survey\Question\ShowController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('app');
-});
+Route::get('/surveys', IndexController::class);
+Route::get('/surveys/{survey}/questions', ShowController::class)
+    ->name('surveys.questions.show');
