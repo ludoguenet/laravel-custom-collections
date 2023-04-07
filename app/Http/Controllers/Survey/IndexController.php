@@ -25,6 +25,8 @@ final class IndexController extends Controller
             ])
             ->get();
 
+        dd($surveys->first()->questions->withoutResponses());
+
         return view(
             view: 'surveys.index',
             data: [

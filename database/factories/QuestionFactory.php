@@ -21,7 +21,7 @@ final class QuestionFactory extends Factory
     {
         return [
             'question_line' => fake()->sentence,
-            'total_responses' => fake()->randomDigit(),
+            'total_responses' => fake()->numberBetween(0, 3),
             'survey_id' => Survey::factory(),
         ];
     }

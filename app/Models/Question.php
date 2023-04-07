@@ -38,16 +38,21 @@ final class Question extends Model
         return $this->belongsTo(Survey::class);
     }
 
-    /**
-     * @param array $models
-     * @return Collection
-     */
-    public function newCollection(
-        array $models = [],
-    ): Collection {
-        return new QuestionCollection(
-            items: $models,
-        );
+//    /**
+//     * @param array $models
+//     * @return Collection
+//     */
+//    public function newCollection(
+//        array $models = [],
+//    ): Collection {
+//        return new QuestionCollection(
+//            items: $models,
+//        );
+//    }
+
+    public function newCollection(array $models = []): QuestionCollection
+    {
+        return new QuestionCollection($models);
     }
 
     /**
