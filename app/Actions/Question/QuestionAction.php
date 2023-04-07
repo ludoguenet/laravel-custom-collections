@@ -4,20 +4,15 @@ declare(strict_types=1);
 
 namespace App\Actions\Question;
 
-use App\Collections\QuestionCollection;
-use App\Models\Question;
-use Illuminate\Database\Eloquent\Collection;
+use App\Collection\Question\QuestionCollection;
 
-final class QuestionAction
+class QuestionAction
 {
-    /**
-     * @param QuestionCollection<Question> $collection
-     * @return void
-     */
     public function __invoke(
-        QuestionCollection $collection,
+        QuestionCollection $questions,
     ): void {
-//        $filtered = $collection->filter(static fn (Question $question) => $question->isWithoutResponses());
-//        dd($collection->withoutResponses());
+        $filtered = $questions->withoutResponses();
+
+        dd($filtered);
     }
 }

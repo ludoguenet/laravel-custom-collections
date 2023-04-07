@@ -45,6 +45,9 @@ final class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    /**
+     * @return HasMany<Survey>
+     */
     public function surveys(): HasMany
     {
         return $this->hasMany(Survey::class);

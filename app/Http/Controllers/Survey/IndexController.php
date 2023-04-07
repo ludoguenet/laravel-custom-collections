@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Survey;
 
+use App\Actions\Question\QuestionAction;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Survey;
@@ -17,7 +18,7 @@ final class IndexController extends Controller
     ): View {
         $surveys = Survey::query()
             ->addSelect([
-                'questions_count' => Question::selectRaw("COUNT(questions.id)")->whereColumn('survey_id', 'surveys.id')
+                'questions_count' => Question::selectRaw('COUNT(questions.id)')->whereColumn('survey_id', 'surveys.id'),
             ])
             ->with([
                 'author',
@@ -25,7 +26,7 @@ final class IndexController extends Controller
             ])
             ->get();
 
-        dd($surveys->first()->questions->withoutResponses());
+        (new QuestionAction)($surveys->firstOrFail()->questions);
 
         return view(
             view: 'surveys.index',

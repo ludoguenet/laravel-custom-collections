@@ -13,13 +13,13 @@ final class DatabaseSeeder extends Seeder
 {
     public function run(): void
     {
-         User::factory(5)
-             ->has(
-                 Survey::factory()
-                    ->has(
-                        Question::factory(10)
-                    )
-             )
-             ->create();
+        User::factory(5)
+            ->has(
+                Survey::factory()
+                   ->has(
+                       Question::factory(10)
+                   )
+            )
+            ->create();
     }
 }

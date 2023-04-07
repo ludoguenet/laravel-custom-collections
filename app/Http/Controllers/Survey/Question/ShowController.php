@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Http\Controllers\Survey\Question;
 
-use App\Actions\Question\QuestionAction;
 use App\Http\Controllers\Controller;
 use App\Models\Question;
 use App\Models\Survey;
@@ -20,9 +19,6 @@ final class ShowController extends Controller
         $questions = Question::query()
             ->where('survey_id', $survey->id)
             ->get();
-
-//        call_user_func(new QuestionAction,  $questions);
-//        (new QuestionAction)($questions);
 
         return view(
             view: 'surveys.questions.index',

@@ -21,6 +21,9 @@ final class Survey extends Model
         'user_id',
     ];
 
+    /**
+     * @return BelongsTo<User, Survey>
+     */
     public function author(): BelongsTo
     {
         return $this->belongsTo(
@@ -30,7 +33,7 @@ final class Survey extends Model
     }
 
     /**
-     * @return HasMany
+     * @return HasMany<Question>
      */
     public function questions(): HasMany
     {
